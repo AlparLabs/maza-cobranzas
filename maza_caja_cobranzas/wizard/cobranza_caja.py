@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -90,9 +89,9 @@ class CobranzaCajaWizard(models.TransientModel):
     def action_cobrar(self):
         self.ensure_one()
         if self.amount <= 0:
-            raise UserError('El importe a cobrar debe ser mayor a cero.')
+            raise UserError(_('El importe a cobrar debe ser mayor a cero.'))
         if self.aplicar == 'facturas' and not self.invoice_ids:
-            raise UserError('Elegí al menos una factura, o cambiá a "Al saldo de la cuenta".')
+            raise UserError(_('Elegí al menos una factura, o cambiá a "Al saldo de la cuenta".'))
 
         vals = {
             'payment_type': 'inbound',

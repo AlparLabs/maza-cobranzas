@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': 'Maza · Cobranzas de Caja',
     'version': '19.0.0.1.0',
