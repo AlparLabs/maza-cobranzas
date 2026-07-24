@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cobranza_caja_wizard,cobranza.caja.wizard,model_maza_cobranza_caja_wizard,maza_caja_cobranzas.group_cajera,1,1,1,1

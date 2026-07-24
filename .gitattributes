@@ -1,0 +1,5 @@
+# Normalizar fines de línea: el módulo corre en Odoo SH (Linux)
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary

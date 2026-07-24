@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_cobranza_caja_wizard_form" model="ir.ui.view">
+    <field name="name">maza.cobranza.caja.wizard.form</field>
+    <field name="model">maza.cobranza.caja.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Cobranza de Caja">
+        <group>
+          <group string="Cliente">
+            <field name="partner_id" options="{'no_create': True}"/>
+            <field name="saldo_pendiente" readonly="1"/>
+          </group>
+          <group string="Cobro">
+            <field name="journal_id" options="{'no_create': True}"/>
+            <field name="es_cheque" invisible="1"/>
+            <field name="amount"/>
+            <field name="payment_date"/>
+            <field name="memo" placeholder="opcional: nº de recibo, referencia..."/>
+            <field name="currency_id" invisible="1"/>
+          </group>
+        </group>
+        <group>
+          <field name="aplicar" widget="radio" options="{'horizontal': true}"/>
+        </group>
+        <group invisible="aplicar != 'facturas'">
+          <field name="invoice_ids" nolabel="1" colspan="2">
+            <list>
+              <field name="name"/>
+              <field name="invoice_date"/>
+              <field name="invoice_date_due"/>
+              <field name="amount_total"/>
+              <field name="amount_residual" string="Pendiente"/>
+            </list>
+          </field>
+          <field name="total_seleccionado" readonly="1"/>
+        </group>
+        <div class="alert alert-info" role="alert" invisible="not es_cheque">
+          Método con <b>cheque de terceros</b>: al confirmar se abre el pago
+          para cargar número, banco y vencimiento. El cheque queda en la
+          cartera de terceros.
+        </div>
+        <footer>
+          <button name="action_cobrar" type="object" string="💵 Cobrar"
+                  class="btn-primary"/>
+          <button string="Cancelar" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_cobranza_caja_wizard" model="ir.actions.act_window">
+    <field name="name">Cobranza de Caja</field>
+    <field name="res_model">maza.cobranza.caja.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <!-- Menú dentro de Contabilidad ▸ Clientes -->
+  <menuitem id="menu_cobranza_caja"
+            name="Cobranza de Caja"
+            parent="account.menu_finance_receivables"
+            action="action_cobranza_caja_wizard"
+            sequence="15"
+            groups="maza_caja_cobranzas.group_cajera"/>
+
+</odoo>

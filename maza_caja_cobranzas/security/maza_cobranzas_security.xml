@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="group_cajera" model="res.groups">
+    <field name="name">Cobranzas de Caja</field>
+    <field name="category_id" ref="base.module_category_accounting"/>
+    <field name="comment">Puede registrar cobranzas de clientes desde la
+pantalla de Cobranza de Caja. Pensado para las cajeras del mostrador:
+no habilita el resto de la contabilidad.</field>
+    <!-- Necesita facturación básica para crear/postear pagos -->
+    <field name="implied_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+  </record>
+
+</odoo>
