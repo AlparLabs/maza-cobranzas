@@ -3,7 +3,7 @@
 
   <record id="group_cajera" model="res.groups">
     <field name="name">Cobranzas de Caja</field>
-    <field name="category_id" ref="base.module_category_accounting"/>
+    <field name="privilege_id" ref="account.res_groups_privilege_accounting"/>
     <field name="comment">Puede registrar cobranzas de clientes desde la
 pantalla de Cobranza de Caja. Pensado para las cajeras del mostrador:
 no habilita el resto de la contabilidad.</field>
